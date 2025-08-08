@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+actor "Administrador IT" as Admin
+actor "Windows" as Win
+
+usecase "Validar archivos de canal" as UC1
+usecase "Verificar 21 campos obligatorios" as UC2
+usecase "Verificar número de versión" as UC3
+usecase "Realizar actualizaciones incrementales" as UC4
+usecase "Recuperación automática ante fallos" as UC5
+usecase "Recuperación manual (extensión)" as UC6
+usecase "Interactuar con APIs externas" as UC7
+
+Win --> UC1
+Win --> UC4
+Win --> UC5
+UC1 --> UC2 : <<include>>
+UC1 --> UC3 : <<include>>
+UC5 --> UC6 : <<extend>>
+
+Admin --> UC1
+Admin --> UC4
+Admin --> UC6
+Admin --> UC7
+
+@enduml

@@ -1,10 +1,31 @@
-def resta_arrays(array1, array2):
-    if len(array1) != len(array2):
-        raise ValueError("Los arrays deben tener la misma longitud")
-    return [a - b for a, b in zip(array1, array2)]
+def Opciones(lista, respuesta = [], totalrespuesta = []):
 
-# Ejemplo de uso
-array1 = [10, 20, 30, 40]
-array2 = [1, 2, 3, 4]
-resultado = resta_arrays(array1, array2)
-print(resultado)  # Output: [9, 18, 27, 36]
+    if len(respuesta) == len(lista):
+        totalrespuesta.append(respuesta[:])
+        return
+    for i in range(len(lista)):
+        if i not in respuesta:
+            respuesta.append(i)
+            Opciones(lista, respuesta, totalrespuesta)
+            respuesta.pop()
+    return totalrespuesta
+
+
+Opciones = Opciones([1, 2, 3])
+
+print(Opciones)
+
+
+def Opciones2(lista, respuesta = "", totalrespuesta = []):
+    if len(respuesta) == len(lista):
+        totalrespuesta.append(respuesta)
+        return
+    for i in range(len(lista)):
+        if str(i) not in respuesta:
+            Opciones2(lista, respuesta + str(i), totalrespuesta)
+    return totalrespuesta
+
+
+Opciones2 = Opciones2([1, 2, 3])
+
+print(Opciones2)
