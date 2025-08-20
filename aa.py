@@ -2,6 +2,7 @@ lista = ["a", "b", "c", "d", "e"]
 r = 2
 def combinaciones(lista: list[str], r, idx = 0, rpta:list[str] = [], rptatotal = []):
     if len(rpta) == r: 
+
         
         rptatotal.append(rpta[:])
         return 
