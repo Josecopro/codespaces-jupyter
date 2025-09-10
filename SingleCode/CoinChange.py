@@ -20,31 +20,28 @@ from typing import Dict
 
 def MemoChange(n: int, Coins:list[int]) -> int:
     # caché inicial con los casos base
-    memo: Dict[int, int] = {0: 1}
+    memo: Dict[int, int] = {0: 0}  # 0 coins needed to make amount 0
 
-    def dp(Amount: int, Coins:list[int], idx:int = 0, listica:list[int] =[]) -> int:
-        if Amount == 0:
-            listica.append(idx)
+    def dp(Amount: int, Coins:list[int]) -> int:
         if Amount in memo:
-
             return memo[Amount]
 
         if Amount < 0:
-            return 0
+            return float('inf')
         
+        MinCoins = float('inf')
         for coin in Coins:
-            if Amount in memo.keys():
-                memo[Amount] += dp(Amount - coin, Coins, idx + 1)
-            else:
-                memo[Amount] = dp(Amount - coin, Coins, idx + 1)
-        print(memo)
-        print(listica)
+            result = dp(Amount - coin, Coins)
+            MinCoins = min(MinCoins, result + 1)
+        
+        memo[Amount] = MinCoins
         return memo[Amount]
 
-    return dp(n, Coins)
+    result = dp(n, Coins)
+    return result if result != float('inf') else -1
 
 
-print(MemoChange(6, [1,2,3]))
+print(MemoChange(5, [1,2,3]))
 
 
 
