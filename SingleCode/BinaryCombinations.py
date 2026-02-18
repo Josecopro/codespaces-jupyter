@@ -14,3 +14,4 @@ def BinaryCombinations(n:int,idx = 0, PartialResult:str = "" ,Result:list[str] =
 
 print(BinaryCombinations(n))
     
+print(bin(5))
